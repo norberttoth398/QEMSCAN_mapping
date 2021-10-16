@@ -321,7 +321,7 @@ def build_conc_map(data, shape=None):
 
 
 
-def plot_intensity_maps(conc_data, elements, grid=(1,1),figsize = None, show_axis = "off", fontsize = 12, cmaps = None):
+def plot_intensity_maps(conc_data, elements, grid=(1,1),figsize = None, show_axis = "off", fontsize = 12, cmaps = None, fraction_pad = (0.03, 0.04)):
     """
     Fucntion to plot intensity maps in and easy and intuitive manner, but also keeping
     flexibility at heart.
@@ -345,6 +345,8 @@ def plot_intensity_maps(conc_data, elements, grid=(1,1),figsize = None, show_axi
         List of colormaps to be used for plotting, default contains 16 of these
         already - this sets the maximum maps to be plotted using the default. Note, this
         has to be the same length as the number of plots or longer.
+    fraction_pad (list/tuple of 2 INTs)
+        Allows colorbar modification.
 
 
     Returns
@@ -395,7 +397,7 @@ def plot_intensity_maps(conc_data, elements, grid=(1,1),figsize = None, show_axi
         im = ax[i].imshow(map, cmap=cmaps[i], interpolation = "none", vmin = v_min, vmax = v_max)
         ax[i].set_title(elements[i], fontsize=fontsize)
         ax[i].axis(show_axis)
-        fig.colorbar(im, ax=ax[i], fraction=0.03, pad=0.04)
+        fig.colorbar(im, ax=ax[i], fraction = fraction_pad[0], pad = fraction_pad[1])
 
     fig.tight_layout()
 
